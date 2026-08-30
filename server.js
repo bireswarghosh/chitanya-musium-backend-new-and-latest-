@@ -8,6 +8,7 @@ const PORT = process.env.PORT || 5000;
 const allowedOrigins = [
   'https://sri-chaitanya-mahaprabhu-museum-entry.onrender.com',
   'https://sri-chaitanya-mahaprabhu-museum-ent.vercel.app',
+  'http://localhost:3001',
   'https://your-backend-name.vercel.app',
   'https://2gvbh86w-3001.inc1.devtunnels.ms/',
   'https://chaitanyafront-ta8d.vercel.app',
@@ -47,6 +48,39 @@ app.use('/api/activity', require('./routes/activity'));
 // Health check
 app.get('/', (req, res) => {
   res.json({ message: 'Museum API is running on port ' + PORT });
+});
+
+// Debug DB check - temporary for diagnosis (remove after fix)
+app.get('/api/debug/db', async (req, res) => {
+  try {
+    const db = require('./config/database');
+    const [rows] = await db.execute('SELECT 1 as ok');
+    res.json({ 
+      status: 'DB OK', 
+      ok: rows[0].ok,
+      env: {
+        host: process.env.DB_HOST ? 'SET (' + process.env.DB_HOST + ')' : 'MISSING',
+        user: process.env.DB_USER || 'MISSING',
+        database: process.env.DB_NAME || 'MISSING',
+        hasPassword: !!process.env.DB_PASSWORD,
+        port: PORT
+      }
+    });
+  } catch (e) {
+    res.status(500).json({ 
+      status: 'DB FAILED', 
+      error: e.message || e.sqlMessage || 'unknown',
+      code: e.code,
+      errno: e.errno,
+      sqlMessage: e.sqlMessage,
+      env: {
+        host: process.env.DB_HOST || 'MISSING',
+        user: process.env.DB_USER || 'MISSING',
+        database: process.env.DB_NAME || 'MISSING',
+        hasPassword: !!process.env.DB_PASSWORD
+      }
+    });
+  }
 });
 
 // For Vercel deployment

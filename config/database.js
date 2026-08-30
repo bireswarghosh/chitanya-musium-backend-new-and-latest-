@@ -8,7 +8,18 @@ const pool = mysql.createPool({
   database: process.env.DB_NAME,
   waitForConnections: true,
   connectionLimit: 5,
-  queueLimit: 0
+  queueLimit: 0,
+  enableKeepAlive: true,
+  keepAliveInitialDelay: 10000
+});
+
+// Log env status without exposing password
+console.log('🔧 DB Config check:', {
+  host: process.env.DB_HOST || 'MISSING',
+  user: process.env.DB_USER || 'MISSING',
+  database: process.env.DB_NAME || 'MISSING',
+  hasPassword: !!process.env.DB_PASSWORD,
+  port: process.env.PORT || 'MISSING'
 });
 
 // Test connection
@@ -19,6 +30,7 @@ pool.getConnection()
   })
   .catch(err => {
     console.error('❌ Database connection failed:', err.message);
+    console.error('❌ Full error:', JSON.stringify({ message: err.message, code: err.code, errno: err.errno, sqlMessage: err.sqlMessage, sqlState: err.sqlState, stack: err.stack }, null, 2));
   });
 
 module.exports = pool;

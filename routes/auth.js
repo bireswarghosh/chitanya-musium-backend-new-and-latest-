@@ -67,10 +67,14 @@ router.post('/login', async (req, res) => {
       return res.status(400).json({ error: "Username & password required" });
     }
 
+    console.log('🔐 Login attempt:', username);
+
     const [users] = await db.execute(
       'SELECT * FROM ci_users WHERE username = ?',
       [username]
     );
+
+    console.log('👥 Found users:', users.length);
 
     if (users.length === 0) {
       return res.status(401).json({ error: 'User not found' });
@@ -109,7 +113,15 @@ router.post('/login', async (req, res) => {
     });
 
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    console.error('❌ LOGIN ERROR:', error);
+    console.error('❌ LOGIN ERROR FULL:', JSON.stringify({ message: error.message, code: error.code, errno: error.errno, sqlMessage: error.sqlMessage, sqlState: error.sqlState, stack: error.stack }, null, 2));
+    res.status(500).json({ 
+      error: error.message || error.sqlMessage || 'Unknown error',
+      code: error.code,
+      errno: error.errno,
+      sqlMessage: error.sqlMessage,
+      details: error.stack ? error.stack.split('\n').slice(0,3).join(' | ') : undefined
+    });
   }
 });
 
