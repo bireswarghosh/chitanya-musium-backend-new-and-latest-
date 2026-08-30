@@ -45,6 +45,17 @@ app.use('/api/booking', require('./routes/booking'));
 app.use('/api/permissions', require('./routes/permissions'));
 app.use('/api/activity', require('./routes/activity'));
 
+// Flutter app uses /api/v1 prefix - alias for backward compatibility
+app.use('/api/v1/auth', require('./routes/auth'));
+app.use('/api/v1/admin', require('./routes/admin'));
+app.use('/api/v1/roles', require('./routes/roles'));
+app.use('/api/v1/museum', require('./routes/museum'));
+app.use('/api/v1/razorpay', require('./routes/razorpay'));
+app.use('/api/v1/camping', require('./routes/camping'));
+app.use('/api/v1/booking', require('./routes/booking'));
+app.use('/api/v1/permissions', require('./routes/permissions'));
+app.use('/api/v1/activity', require('./routes/activity'));
+
 // Health check
 app.get('/', (req, res) => {
   res.json({ message: 'Museum API is running on port ' + PORT });
