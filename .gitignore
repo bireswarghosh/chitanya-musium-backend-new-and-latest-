@@ -1,0 +1,80 @@
+# =========================
+# Node Modules
+# =========================
+node_modules/
+
+# =========================
+# Environment Variables (VERY IMPORTANT 🚨)
+# =========================
+.env
+.env.*
+!.env.example
+
+# =========================
+# Logs
+# =========================
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# =========================
+# Build / Production
+# =========================
+dist/
+build/
+.next/
+out/
+
+# =========================
+# Cache / Temp
+# =========================
+.cache/
+.tmp/
+.temp/
+coverage/
+
+# =========================
+# OS Files
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# IDE / Editor
+# =========================
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# =========================
+# Prisma
+# =========================
+prisma/migrations/dev.db*
+prisma/migrations/*.sqlite*
+
+# =========================
+# TypeScript
+# =========================
+*.tsbuildinfo
+
+# =========================
+# Debug
+# =========================
+*.pid
+*.seed
+*.pid.lock
+
+# =========================
+# Optional uploads (if using multer)
+# =========================
+uploads/
+public/uploads/
+
+# =========================
+# Test
+# =========================
+jest-cache/

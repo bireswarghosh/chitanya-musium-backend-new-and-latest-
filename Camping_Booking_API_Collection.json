@@ -1,0 +1,276 @@
+{
+  "info": {
+    "name": "Chaitanya Museum - Camping & Booking API Collection",
+    "description": "Complete API collection for Camping Management and Booking modules",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://chaitanyaback.onrender.com"
+    }
+  ],
+  "item": [
+    {
+      "name": "🏕️ Camping Events",
+      "item": [
+        {
+          "name": "Get All Campings",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/camping"
+          }
+        },
+        {
+          "name": "Create Camping",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/camping",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"camping_name\": \"Health Camp Mayapur\",\n  \"location\": \"Mayapur, Nadia\",\n  \"start_date\": \"2025-07-01\",\n  \"end_date\": \"2025-07-03\",\n  \"organizer_name\": \"Dr. Sharma\",\n  \"contact_details\": \"9876543210\",\n  \"participants_count\": 50,\n  \"remarks\": \"Free eye checkup\",\n  \"doctors\": \"Dr. Sharma, Dr. Roy\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Update Camping",
+          "request": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/api/camping/1",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"camping_name\": \"Health Camp Mayapur Updated\",\n  \"location\": \"Mayapur, Nadia\",\n  \"start_date\": \"2025-07-01\",\n  \"end_date\": \"2025-07-05\",\n  \"organizer_name\": \"Dr. Sharma\",\n  \"contact_details\": \"9876543210\",\n  \"participants_count\": 100,\n  \"remarks\": \"Free eye + dental checkup\",\n  \"doctors\": \"Dr. Sharma, Dr. Roy, Dr. Das\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Delete Camping",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/camping/1"
+          }
+        }
+      ]
+    },
+    {
+      "name": "👥 Camping Leads",
+      "item": [
+        {
+          "name": "Get All Leads",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/camping/leads"
+          }
+        },
+        {
+          "name": "Get Leads by Camping ID",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/camping/leads?camping_id=1"
+          }
+        },
+        {
+          "name": "Create Lead",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/camping/leads",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"camping_id\": 1,\n  \"patient_name\": \"Rahul Das\",\n  \"phone\": \"9123456789\",\n  \"email\": \"rahul@email.com\",\n  \"age\": \"35\",\n  \"interest\": \"Eye Checkup\",\n  \"source\": \"Walk-in\",\n  \"date\": \"2025-07-01\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Update Lead",
+          "request": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/api/camping/leads/1",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"camping_id\": 1,\n  \"patient_name\": \"Rahul Das Updated\",\n  \"phone\": \"9123456789\",\n  \"email\": \"rahul@email.com\",\n  \"age\": \"36\",\n  \"interest\": \"Dental\",\n  \"source\": \"Referral\",\n  \"date\": \"2025-07-02\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Delete Lead",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/camping/leads/1"
+          }
+        }
+      ]
+    },
+    {
+      "name": "📋 Booking",
+      "item": [
+        {
+          "name": "Get All Bookings",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/booking"
+          }
+        },
+        {
+          "name": "Create Booking (Cash)",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/booking",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fullname\": \"Amit Kumar\",\n  \"phone\": \"9876543210\",\n  \"email\": \"amit@email.com\",\n  \"address\": \"Kolkata\",\n  \"booking_date\": \"2025-07-15\",\n  \"booking_time\": \"10:00\",\n  \"hours\": 3,\n  \"extra_hours\": 0,\n  \"service_charge\": 1000,\n  \"booking_charge\": 3000,\n  \"extra_charge\": 0,\n  \"total_amt\": 4000,\n  \"payment\": \"0\",\n  \"txn_id\": \"\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Create Booking (With Extra Hours)",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/booking",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fullname\": \"Suman Roy\",\n  \"phone\": \"9123456789\",\n  \"email\": \"suman@email.com\",\n  \"address\": \"Howrah\",\n  \"booking_date\": \"2025-07-20\",\n  \"booking_time\": \"14:00\",\n  \"hours\": 5,\n  \"extra_hours\": 2,\n  \"service_charge\": 1000,\n  \"booking_charge\": 3000,\n  \"extra_charge\": 2000,\n  \"total_amt\": 6000,\n  \"payment\": \"1\",\n  \"txn_id\": \"pay_xyz123abc\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Delete Booking",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/booking/1"
+          }
+        }
+      ]
+    },
+    {
+      "name": "💳 Razorpay",
+      "item": [
+        {
+          "name": "Create Razorpay Order",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/razorpay/create-order",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": 4000\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "🛡️ Permissions / Access Control",
+      "item": [
+        {
+          "name": "Get All Permissions",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/permissions"
+          }
+        },
+        {
+          "name": "Get Permissions by Role ID",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/permissions/2"
+          }
+        },
+        {
+          "name": "Save Permissions for Role",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/permissions",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"role_id\": 2,\n  \"permissions\": [\n    { \"page_key\": \"museum-entry\", \"can_view\": 1, \"can_add\": 1, \"can_edit\": 0, \"can_delete\": 0, \"can_download\": 0, \"can_print\": 1, \"is_public\": 1 },\n    { \"page_key\": \"museum-entries\", \"can_view\": 1, \"can_add\": 0, \"can_edit\": 0, \"can_delete\": 0, \"can_download\": 1, \"can_print\": 1, \"is_public\": 0 },\n    { \"page_key\": \"camping-management\", \"can_view\": 1, \"can_add\": 1, \"can_edit\": 1, \"can_delete\": 0, \"can_download\": 1, \"can_print\": 1, \"is_public\": 0 },\n    { \"page_key\": \"booking\", \"can_view\": 1, \"can_add\": 1, \"can_edit\": 0, \"can_delete\": 0, \"can_download\": 0, \"can_print\": 0, \"is_public\": 1 },\n    { \"page_key\": \"booking-list\", \"can_view\": 1, \"can_add\": 0, \"can_edit\": 0, \"can_delete\": 0, \"can_download\": 1, \"can_print\": 1, \"is_public\": 0 }\n  ]\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "📡 Activity / Analytics",
+      "item": [
+        {
+          "name": "Log Activity",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/activity/log",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_id\": 1,\n  \"username\": \"admin\",\n  \"action\": \"page_view\",\n  \"page\": \"museum-entry\",\n  \"details\": \"Viewed museum entry form\",\n  \"city\": \"Kolkata\",\n  \"region\": \"West Bengal\",\n  \"country\": \"India\",\n  \"latitude\": 22.5726,\n  \"longitude\": 88.3639\n}"
+            }
+          }
+        },
+        {
+          "name": "Log Session",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/activity/session",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"session_id\": \"sess_12345\",\n  \"user_id\": 1,\n  \"username\": \"admin\",\n  \"page\": \"museum-entries\",\n  \"time_spent\": 120,\n  \"clicks\": 5,\n  \"city\": \"Kolkata\",\n  \"country\": \"India\",\n  \"device\": \"Desktop\",\n  \"browser\": \"Chrome\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Get Activity Logs",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/activity/logs?limit=100"
+          }
+        },
+        {
+          "name": "Get Activity Logs (Filtered)",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/activity/logs?username=admin&action=create&from_date=2025-07-01"
+          }
+        },
+        {
+          "name": "Get Visitor Sessions",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/activity/sessions?limit=50"
+          }
+        },
+        {
+          "name": "Get Stats Summary",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/activity/stats"
+          }
+        }
+      ]
+    }
+  ]
+}
