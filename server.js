@@ -101,9 +101,15 @@ app.get('/api/debug/db', async (req, res) => {
 //   });
 // }
 
-app.listen(PORT, () => {
-  console.log(`🔥 Museum API Server running on port ${PORT}`);
-});
+
+
+
+
+// app.listen(PORT, () => {
+//   console.log(`🔥 Museum API Server running on port ${PORT}`);
+// });
+
+
 
 module.exports = app;
 
