@@ -44,6 +44,7 @@ app.use('/api/camping', require('./routes/camping'));
 app.use('/api/booking', require('./routes/booking'));
 app.use('/api/permissions', require('./routes/permissions'));
 app.use('/api/activity', require('./routes/activity'));
+app.use('/api/settings', require('./routes/settings'));
 
 // Flutter app uses /api/v1 prefix - alias for backward compatibility
 app.use('/api/v1/auth', require('./routes/auth'));
@@ -55,6 +56,7 @@ app.use('/api/v1/camping', require('./routes/camping'));
 app.use('/api/v1/booking', require('./routes/booking'));
 app.use('/api/v1/permissions', require('./routes/permissions'));
 app.use('/api/v1/activity', require('./routes/activity'));
+app.use('/api/v1/settings', require('./routes/settings'));
 
 // Health check
 app.get('/', (req, res) => {
