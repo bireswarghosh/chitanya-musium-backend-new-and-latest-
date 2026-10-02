@@ -94,12 +94,12 @@ app.get('/api/debug/db', async (req, res) => {
   }
 });
 
-// For Vercel deployment
-// if (process.env.NODE_ENV !== 'production') {
-//   app.listen(PORT, () => {
-//     console.log(`Museum API Server running on port ${PORT}`);
-//   });
-// }
+// For Vercel: Vercel imports app via require(), so only listen when run directly (node server.js) for local dev.
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`Museum API Server running on port ${PORT}`);
+  });
+}
 
 
 
